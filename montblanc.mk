@@ -78,7 +78,7 @@ PRODUCT_COPY_FILES += \
 # These are the hardware-specific configuration files
 PRODUCT_COPY_FILES := \
         device/sony/montblanc-common/config/omxloaders:system/etc/omxloaders \
-        device/sony/montblanc-common/config/ste_modem.sh:system/etc/ste_modem.sh 
+        device/sony/montblanc-common/config/ste_modem.sh:system/etc/ste_modem.sh \
 	device/samsung/u8500-common/etc/asound.conf:system/etc/asound.conf \
 	device/samsung/u8500-common/etc/gps.conf:system/etc/gps.conf \
 	device/samsung/u8500-common/etc/nvram_net.txt:system/etc/nvram_net.txt \
