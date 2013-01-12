@@ -1,23 +1,25 @@
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/montblanc-common/include
+
 # Kernel
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Platform
-TARGET_BOARD_PLATFORM := montblanc
+TARGET_BOARD_PLATFORM := mobtblanc
 BOARD_USES_STE_HARDWARE := true
-TARGET_BOOTLOADER_BOARD_NAME := montblanc
+TARGET_BOOTLOADER_BOARD_NAME := mobtblanc
 TARGET_BOARD_PLATFORM := ux500
 
 # Architecture
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_ARCH_VARIANT_CPU := cortex-a9
 ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_CPU_SMP := true
 
 # Flags
-TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 # Kernel Info
 #TARGET_KERNEL_SOURCE := kernel/samsung/janice   {commented as we don't have cm source yet}
@@ -48,7 +50,7 @@ WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/vendor/firmware/bcm4330_sta.bin
 
 # Graphics
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/sony/montblanc-common/config/egl.cfg
+#BOARD_EGL_CFG := device/samsung/mobtblanc-common/config/egl.cfg
 COMMON_GLOBAL_CFLAGS += -DSTE_HARDWARE -DSTE_HDMI
 
 # Lights
@@ -57,10 +59,10 @@ TARGET_PROVIDES_LIBLIGHTS := true
 # Custom boot
 TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_RC := true
-TARGET_RECOVERY_INITRC := device/samsung/montblanc/rootdir/recovery.rc
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/montblanc/shbootimg.mk
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/montblanc/releasetools/u8500_ota_from_target_files
-TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/montblanc/releasetools/u8500_img_from_target_files
+TARGET_RECOVERY_INITRC := device/samsung/mobtblanc-common/rootdir/recovery.rc
+#BOARD_CUSTOM_BOOTIMG_MK := device/samsung/mobtblanc-common/shbootimg.mk
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/mobtblanc-common-common/releasetools/u8500_ota_from_target_files
+TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/mobtblanc-common-common/releasetools/u8500_img_from_target_files
 
 # LUN
 BOARD_UMS_LUNFILE := "/sys/devices/platform/musb-ux500.0/musb-hdrc/gadget/lun0/file"

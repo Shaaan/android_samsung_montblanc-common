@@ -37,7 +37,44 @@
 # These is the hardware-specific overlay, which points to the location
 # of hardware-specific resource overrides, typically the frameworks and
 # application settings that are stored in resourced.
-DEVICE_PACKAGE_OVERLAYS += device/samsung/u8500-common/overlay
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+$(call inherit-product-if-exists, device/samsung/montblanc-common/recovery/recovery.mk)
+
+$(call inherit-product-if-exists, vendor/samsung/montblanc-common/montblanc-vendor-blobs.mk)
+
+DEVICE_PACKAGE_OVERLAYS += device/samsung/montblanc-common/overlay
+
+# These are the hardware-specific configuration files
+PRODUCT_COPY_FILES += \
+        device/samsung/montblanc-common/config/omxloaders:system/etc/omxloaders \
+        device/samsung/montblanc-common/config/ste_modem.sh:system/etc/ste_modem.sh \
+	device/samsung/montblanc-common/config/asound.conf:system/etc/asound.conf \
+	device/samsung/montblanc-common/config/gps.conf:system/etc/gps.conf \
+	device/samsung/montblanc-common/config/sirfgps.conf:system/etc/sirfgps.conf \
+	device/samsung/montblanc-common/config/vold.fstab:system/etc/vold.fstab \
+	device/samsung/montblanc-common/config/egl.cfg:system/lib/egl/egl.cfg
+
+# Permissions
+#PRODUCT_COPY_FILES += \
+#    frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+#    frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+#    frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+#    frameworks/base/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+#    frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+#    frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+#    frameworks/base/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+#    frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+#    frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+#    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
+#    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+#    frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+#    frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+#    frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+#    frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+#    frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+#    frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+#    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -69,23 +106,9 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/u8500-common/init.u8500.rc:root/init.u8500.rc \
-	device/samsung/u8500-common/prerecovery.rc:root/prerecovery.rc \
-	device/samsung/u8500-common/ueventd.u8500.rc:root/ueventd.rc \
-	device/samsung/u8500-common/etc/init.d/10soundbooster:system/etc/init.d/10soundbooster
-
-
-# These are the hardware-specific configuration files
-PRODUCT_COPY_FILES := \
-        device/sony/montblanc-common/config/omxloaders:system/etc/omxloaders \
-        device/sony/montblanc-common/config/ste_modem.sh:system/etc/ste_modem.sh \
-	device/samsung/u8500-common/etc/asound.conf:system/etc/asound.conf \
-	device/samsung/u8500-common/etc/gps.conf:system/etc/gps.conf \
-	device/samsung/u8500-common/etc/nvram_net.txt:system/etc/nvram_net.txt \
-	device/samsung/u8500-common/etc/sirfgps.conf:system/etc/sirfgps.conf \
-	device/samsung/u8500-common/etc/vold.fstab:system/etc/vold.fstab \
-	device/samsung/u8500-common/egl.cfg:system/lib/egl/egl.cfg
-
+	device/samsung/montblanc-common/init.samsungjanice.rc:root/init.samsungjanice.rc \
+	device/samsung/montblanc-common/prerecovery.rc:root/prerecovery.rc \
+	device/samsung/montblanc-common/ueventd.samsungjanice.rc:root/ueventd.samsungjanice.rc \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp \
